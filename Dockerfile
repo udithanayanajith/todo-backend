@@ -1,17 +1,16 @@
-# Build stage
-FROM eclipse-temurin:17-jdk-alpine AS build
+# Build stage: use Maven image to build the JAR
+FROM maven:3.9.3-eclipse-temurin-17 AS build
 
 WORKDIR /app
 
-# Copy Maven files and source code
+# Copy project files
 COPY pom.xml .
 COPY src ./src
 
-# If you have Maven wrapper
-RUN ./mvnw clean package -DskipTests
-# Or if you use local Maven: RUN mvn clean package -DskipTests
+# Build the JAR
+RUN mvn clean package -DskipTests
 
-# Final image
+# Final image: just JDK to run the app
 FROM eclipse-temurin:17-jdk-alpine
 
 WORKDIR /app
