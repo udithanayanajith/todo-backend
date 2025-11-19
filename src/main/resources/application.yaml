@@ -1,28 +1,24 @@
 server:
   port: 8081
-  address: 0.0.0.0
+  address: 0.0.0.0  # Add this line to listen on all interfaces
 spring:
   datasource:
-    url: jdbc:sqlite:./tododb.sqlite
-    driver-class-name: org.sqlite.JDBC
-    username:
+    driver-class-name: com.mysql.cj.jdbc.Driver
     password:
+    username: root
+    url: jdbc:mysql://db:3306/tododb?useSSL=true&requireSSL=false&createDatabaseIfNotExist=true
+
   jpa:
     hibernate:
       ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
-        dialect: org.hibernate.community.dialect.SQLiteDialect
-        show_sql: true
-        format_sql: true
-  sql:
-    init:
-      platform: sqlite
-
+        dialect: org.hibernate.dialect.MySQL8Dialect
 logging:
   level:
     org.springframework: DEBUG
-    org.hibernate: DEBUG
 
 springdoc:
   swagger-ui:
