@@ -1,40 +1,40 @@
-# flyctl launch added from .gitignore
-**\HELP.md
-**\target
-**\.mvn\wrapper\maven-wrapper.jar
-!**\**\src\main\**\target
-!**\**\src\test\**\target
+# Basic git and IDE files
+.git
+.gitignore
+README.md
+HELP.md
 
-### STS ###
-**\.apt_generated
-**\.classpath
-**\.factorypath
-**\.project
-**\.settings
-**\.springBeans
-**\.sts4-cache
+# Build outputs
+target/
+.mvn/wrapper/maven-wrapper.jar
 
-### IntelliJ IDEA ###
-**\.idea
-**\*.iws
-**\*.iml
-**\*.ipr
+# IDE files
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+.idea
+*.iws
+*.iml
+*.ipr
 
-### NetBeans ###
-nbproject\private
+# NetBeans
+nbproject/private
 nbbuild
 dist
 nbdist
 .nb-gradle
-**\build
-!**\**\src\main\**\build
-!**\**\src\test\**\build
+build/
 
-### VS Code ###
-**\.vscode
+# VS Code
+.vscode/
 
-# flyctl launch added from .idea\.gitignore
-# Default ignored files
-.idea\shelf
-.idea\workspace.xml
+# Fly.io
 fly.toml
+
+# Temporary files
+*.tmp
+*.log
