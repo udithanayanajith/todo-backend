@@ -1,22 +1,28 @@
 server:
   port: 8081
+  address: 0.0.0.0
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:sqlite:./tododb.sqlite
+    driver-class-name: org.sqlite.JDBC
+    username:
     password:
-    username: root
-    url: jdbc:mysql://db:3306/tododb?useSSL=true&requireSSL=false&createDatabaseIfNotExist=true
-#    url: jdbc:mysql://localhost:3306/tododb?useSSL=true&requireSSL=false&createDatabaseIfNotExist=true
-
   jpa:
     hibernate:
       ddl-auto: update
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      dialect: MySQL8Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.community.dialect.SQLiteDialect
+        show_sql: true
+        format_sql: true
+  sql:
+    init:
+      platform: sqlite
+
 logging:
   level:
     org.springframework: DEBUG
+    org.hibernate: DEBUG
 
 springdoc:
   swagger-ui:
