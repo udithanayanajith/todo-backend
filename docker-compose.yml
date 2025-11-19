@@ -1,0 +1,33 @@
+services:
+  mysql-db:
+    image: mysql:8
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tododb
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: unless-stopped
+
+  backend:
+    build: ./todo-backend
+    container_name: todo-backend
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql-db
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/tododb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect
+
+
+
+volumes:
+  db_data:
